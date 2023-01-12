@@ -8,7 +8,7 @@ const Saved = () => {
 	const [savedCode, setSavedCode] = useState('')
 	const [len, setlen] = useState(null)
 
-	const { pathname } = useLocation()
+	const { pathname } = useLocation() // get path name for showning the data
 
 	useEffect(() => {
 		const fetchSavedData = async () => {
@@ -16,7 +16,6 @@ const Saved = () => {
 				const { data } = await axios.get(`http://localhost:8800${pathname}`)
 				setSavedCode(data.value)
 				setlen(data.value.split('\n').length)
-				console.log(data.value.split('\n').length)
 			} catch (error) {
 				console.log(error)
 			}
@@ -25,7 +24,7 @@ const Saved = () => {
 	}, [pathname])
 
 	const linelen = []
-	for (let i = 1; i < len; i++) {
+	for (let i = 1; i <= len; i++) {
 		linelen.push(i)
 	}
 	return (
@@ -37,7 +36,7 @@ const Saved = () => {
 					<div key={num}> {num}</div>
 				))}
 			</div>
-			<Highlight id="code-display" className="css language-plaintext">
+			<Highlight id="code-display" className="css ">
 				{savedCode}
 			</Highlight>
 		</div>

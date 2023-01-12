@@ -1,11 +1,14 @@
 import express, { urlencoded } from 'express'
 import cors from 'cors'
 const app = express()
-const PORT = 8800
 import Document from './doc.js'
 import mongoose from 'mongoose'
+import dotEnv from 'dotenv'
 
-const MongoDbUrl = 'mongodb+srv://MangoSalad:MangoSalad{Password}@cluster0.lts61yo.mongodb.net/hastebin?retryWrites=true&w=majority'
+dotEnv.config()
+
+const PORT = process.env.PORT
+const MongoDbUrl = process.env.MongoDbUrl
 
 mongoose.set('strictQuery', true)
 // mongdb
@@ -19,12 +22,20 @@ app.use(express.urlencoded())
 app.use(express.json())
 
 app.get('/', (req, res) => {
-	const code = `Sharing code is a good thing, and it should be _really_ easy to do it.
+	const code = `# HasteBin
+
+Sharing code is a good thing, and it should be _really_ easy to do it.
 A lot of times, I want to show you something I'm seeing - and that's where we
 use pastebins.
 
 Haste is the prettiest, easiest to use pastebin ever made.
-`
+
+## Basic Usage
+
+Type what you want me to see, click "Save", and then copy the URL.  Send that
+URL to someone and they'll see what you see.
+
+To make a new entry, click "New" `
 	res.send(code)
 })
 

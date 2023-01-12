@@ -1,7 +1,5 @@
-import React, { useState } from 'react'
-
+import { useState } from 'react'
 import Buttons from './Buttons'
-
 import './index.css'
 import axios from 'axios'
 
@@ -13,9 +11,8 @@ const New = () => {
 
 		const postData = async () => {
 			try {
-				const { data } = await axios.post('http://localhost:8800/save', { value: input })
+				const { data } = await axios.post('http://localhost:8800/save', { value: input || 'write something' })
 				window.location.replace(`/${data._id}`)
-				console.log(data)
 			} catch (err) {
 				console.log(err)
 			}

@@ -63,7 +63,7 @@ textarea {
 	opacity: 0.15;
 	transition: opacity 0.2s ease-in-out;
 	background-color: #005266;
-	padding: 1rem;
+	padding: 5rem;
 }
 .buttons-wrapper:hover {
 	opacity: 1;
