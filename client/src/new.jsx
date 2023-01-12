@@ -3,7 +3,7 @@ import Buttons from './Buttons'
 import './index.css'
 import axios from 'axios'
 
-const New = () => {
+const New = ({ URL }) => {
 	const [input, setInput] = useState('')
 
 	const handleSubmit = (e) => {
@@ -11,7 +11,10 @@ const New = () => {
 
 		const postData = async () => {
 			try {
-				const { data } = await axios.post('http://localhost:8800/save', { value: input || 'write something' })
+				const { data } = await axios.post(
+					`${URL}/save`,
+					{ value: input || 'write something' }
+				)
 				window.location.replace(`/${data._id}`)
 			} catch (err) {
 				console.log(err)
@@ -21,7 +24,10 @@ const New = () => {
 	}
 
 	return (
-		<form action="/save" method="POST" onSubmit={handleSubmit}>
+		<form
+			action="/save"
+			method="POST"
+			onSubmit={handleSubmit}>
 			<Buttons />
 			<div className="wrapper">
 				<div className="line-numbers">&gt;</div>

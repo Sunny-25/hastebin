@@ -3,13 +3,13 @@ import Highlight from 'react-highlight'
 import axios from 'axios'
 import Buttons from './Buttons'
 
-const Home = () => {
+const Home = ({ URL }) => {
 	const [code, setCode] = useState('') // for home data text
 	const [len, setLen] = useState(0) // for numbers list count
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const { data } = await axios.get('http://localhost:8800/') //get home data
+			const { data } = await axios.get(URL) //get home data
 			setCode(data)
 			setLen(data.split('\n').length)
 		}
@@ -30,7 +30,9 @@ const Home = () => {
 					<div key={num}> {num}</div>
 				))}
 			</div>
-			<Highlight id="code-display" className="css language-plaintext">
+			<Highlight
+				id="code-display"
+				className="css language-plaintext">
 				{code}
 			</Highlight>
 		</div>

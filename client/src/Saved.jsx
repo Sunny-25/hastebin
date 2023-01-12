@@ -4,7 +4,7 @@ import axios from 'axios'
 import Buttons from './Buttons'
 import { useLocation } from 'react-router-dom'
 
-const Saved = () => {
+const Saved = ({ URL }) => {
 	const [savedCode, setSavedCode] = useState('')
 	const [len, setlen] = useState(null)
 
@@ -13,7 +13,9 @@ const Saved = () => {
 	useEffect(() => {
 		const fetchSavedData = async () => {
 			try {
-				const { data } = await axios.get(`http://localhost:8800${pathname}`)
+				const { data } = await axios.get(
+					`${URL}${pathname}`
+				)
 				setSavedCode(data.value)
 				setlen(data.value.split('\n').length)
 			} catch (error) {

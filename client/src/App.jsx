@@ -5,7 +5,13 @@ import Home from './Home'
 import Saved from './Saved'
 import New from './new'
 
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+const URL = 'https://hastebinbackend1.onrender.com'
+
+import {
+	BrowserRouter,
+	Routes,
+	Route,
+} from 'react-router-dom'
 
 const App = () => {
 	return (
@@ -13,9 +19,18 @@ const App = () => {
 			{/* <Buttons /> */}
 			<BrowserRouter>
 				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="/:id" element={<Saved />} />
-					<Route path="/new" element={<New />} />
+					<Route
+						path="/"
+						element={<Home URL={URL} />}
+					/>
+					<Route
+						path="/:id"
+						element={<Saved URL={URL} />}
+					/>
+					<Route
+						path="/new"
+						element={<New URL={URL} />}
+					/>
 				</Routes>
 			</BrowserRouter>
 		</div>
