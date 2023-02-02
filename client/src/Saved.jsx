@@ -13,9 +13,7 @@ const Saved = ({ URL }) => {
 	useEffect(() => {
 		const fetchSavedData = async () => {
 			try {
-				const { data } = await axios.get(
-					`${URL}${pathname}`
-				)
+				const { data } = await axios.get(`${URL}${pathname}`)
 				setSavedCode(data.value)
 				setlen(data.value.split('\n').length)
 			} catch (error) {
